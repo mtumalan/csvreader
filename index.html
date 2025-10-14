@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CSV Reader</title>
+  <title>Calendario de Unidades — GitHub Pages</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <style>
     :root{
@@ -14,13 +14,13 @@
     html,body{height:100%}
     body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif}
     .wrap{max-width:1000px;margin:32px auto;padding:0 16px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}
     h1{font-size:18px;margin:0}
     .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:14px}
 
     /* Calendario */
-    .cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-    .cal-title{display:flex;align-items:center;gap:10px}
+    .cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:12px}
+    .cal-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .cal-title h2{margin:0;font-size:15px}
     .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #2a3244;border-radius:999px;background:#0d111a;font-size:12px;color:var(--ink)}
     .badge.positive{border-color:var(--good);color:var(--good)}
@@ -28,20 +28,40 @@
     button{background:#0d111a;color:var(--ink);border:1px solid #2a3244;border-radius:10px;padding:8px 10px;cursor:pointer}
     button:hover{background:#232b3b}
 
-    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-    .cal-dow{font-size:11px;color:var(--muted);text-align:center;padding:6px 0}
+    .cal-scroll{overflow:auto; -webkit-overflow-scrolling:touch}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(90px,1fr));gap:8px;min-width:630px}
+    .cal-dow{font-size:11px;color:var(--muted);text-align:center;padding:6px 0;position:sticky;top:0;background:var(--panel);z-index:1}
 
-    .day{background:#1a2234;border:1px solid var(--border);border-radius:12px;padding:10px;min-height:108px;display:flex;flex-direction:column}
+    .day{background:#1a2234;border:1px solid var(--border);border-radius:12px;padding:10px;display:flex;flex-direction:column;aspect-ratio:1/1}
     .day.other{opacity:.35}
     .day .n{font-size:12px;color:var(--muted)}
     .day .u{margin-top:auto;font-weight:700}
+
+    /* Responsive tweaks */
+    @media (max-width: 900px){
+      .wrap{padding:0 12px}
+      .cal-grid{grid-template-columns:repeat(7,minmax(70px,1fr));gap:6px;min-width:490px}
+      .day{aspect-ratio:1/1;}
+    }
+    @media (max-width: 600px){
+      header{flex-direction:column;align-items:flex-start}
+      .cal-top{flex-direction:column;align-items:flex-start}
+      .cal-grid{grid-template-columns:repeat(7,minmax(56px,1fr));gap:5px;min-width:392px}
+      .day{padding:8px;}
+      .day .n{font-size:11px}
+      .day .u{font-size:12px}
+      h1{font-size:16px}
+      .cal-title h2{font-size:14px}
+      .badge{font-size:11px;padding:5px 8px}
+      button{padding:6px 8px}
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>CSV Reader</h1>
+      <h1>Calendario de Unidades</h1>
       <div style="display:flex;gap:8px;align-items:center">
         <span id="monthUnits" class="badge">Mes: — u</span>
         <span id="monthTrades" class="badge">Trades: —</span>
@@ -56,7 +76,7 @@
           <button id="nextMonth">▶</button>
         </div>
       </div>
-      <div class="cal-grid" id="calGrid">
+      <div class="cal-scroll"><div class="cal-grid" id="calGrid">
         <div class="cal-dow">Lun</div>
         <div class="cal-dow">Mar</div>
         <div class="cal-dow">Mié</div>
@@ -64,9 +84,12 @@
         <div class="cal-dow">Vie</div>
         <div class="cal-dow">Sáb</div>
         <div class="cal-dow">Dom</div>
-      </div>
+      </div></div>
     </section>
 
+    <footer style="margin-top:18px;color:var(--muted);font-size:12px">
+      Sólo unidades. Día = suma de (<code>+stake_mult×0.885</code> si acierta, <code>-stake_mult</code> si falla), en UTC.
+    </footer>
   </div>
 
 <script>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSV Reader</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <style>
+    :root{
+      --bg:#0b0e14; --ink:#e6e8ef; --muted:#9aa3b2; --panel:#111521; --border:#1e2636;
+      --good:#1fb970; --bad:#e0526b;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif}
+    .wrap{max-width:1000px;margin:32px auto;padding:0 16px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    h1{font-size:18px;margin:0}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:14px}
+
+    /* Calendario */
+    .cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .cal-title{display:flex;align-items:center;gap:10px}
+    .cal-title h2{margin:0;font-size:15px}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #2a3244;border-radius:999px;background:#0d111a;font-size:12px;color:var(--ink)}
+    .badge.positive{border-color:var(--good);color:var(--good)}
+    .badge.negative{border-color:var(--bad);color:var(--bad)}
+    button{background:#0d111a;color:var(--ink);border:1px solid #2a3244;border-radius:10px;padding:8px 10px;cursor:pointer}
+    button:hover{background:#232b3b}
+
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+    .cal-dow{font-size:11px;color:var(--muted);text-align:center;padding:6px 0}
+
+    .day{background:#1a2234;border:1px solid var(--border);border-radius:12px;padding:10px;min-height:108px;display:flex;flex-direction:column}
+    .day.other{opacity:.35}
+    .day .n{font-size:12px;color:var(--muted)}
+    .day .u{margin-top:auto;font-weight:700}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>CSV Reader</h1>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span id="monthUnits" class="badge">Mes: — u</span>
+        <span id="monthTrades" class="badge">Trades: —</span>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="cal-top">
+        <div class="cal-title">
+          <button id="prevMonth">◀</button>
+          <h2 id="calTitle">—</h2>
+          <button id="nextMonth">▶</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calGrid">
+        <div class="cal-dow">Lun</div>
+        <div class="cal-dow">Mar</div>
+        <div class="cal-dow">Mié</div>
+        <div class="cal-dow">Jue</div>
+        <div class="cal-dow">Vie</div>
+        <div class="cal-dow">Sáb</div>
+        <div class="cal-dow">Dom</div>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+// Config mínima
+const CSV_PATH = 'data/results.csv';
+const PAYOUT = 0.885; // proporción fija
+
+const $$=(s,r=document)=>r.querySelector(s);
+const fmtNum=(n)=> new Intl.NumberFormat('es-MX',{maximumFractionDigits:2}).format(n);
+
+let RAW=[]; // CSV parseado
+let TRADES=[]; // {timestamp, unit_mult, win}
+let CAL_CURRENT=null; // Date UTC (primer día del mes visible)
+
+function toNumber(x){ if(x===null||x===undefined||x==='') return null; if(x==='-inf'||x==='Infinity'||x==='inf'||x==='-Infinity') return null; const n=Number(x); return Number.isFinite(n)? n : null; }
+function detectDateCols(cols){ const guess=['timestamp','ts','date','datetime']; return cols.filter(c=> guess.includes(c.toLowerCase())); }
+function parseCoins(headers){ const coins=new Set(); for(const h of headers){ if(h.startsWith('signal_')) coins.add(h.replace('signal_','')); } return Array.from(coins).sort(); }
+
+function buildTrades(rows, dateCol){
+  const coins=parseCoins(Object.keys(rows[0]));
+  const trades=[];
+  for(const r of rows){
+    const t=new Date(r[dateCol]); if(isNaN(t)) continue;
+    const sm = toNumber(r['stake_mult']) ?? 1;
+    for(const c of coins){
+      const s=toNumber(r['signal_'+c]); if(s!==1) continue;
+      const a=toNumber(r['actual_'+c]); const win=(a===1);
+      trades.push({ timestamp: t.toISOString(), unit_mult: sm, win });
+    }
+  }
+  return trades;
+}
+
+function unitsDelta(tr){ return tr.win ? tr.unit_mult * PAYOUT : -tr.unit_mult; }
+
+function summarizeByDay(trades){
+  const map=new Map(); // YYYY-MM-DD -> {u, trades}
+  for(const tr of trades){
+    const d=new Date(tr.timestamp);
+    const key=new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())).toISOString().slice(0,10);
+    const delta=unitsDelta(tr);
+    const o=map.get(key)||{u:0,trades:0}; o.u+=delta; o.trades+=1; map.set(key,o);
+  }
+  return map;
+}
+
+function renderCalendar(){
+  if(!CAL_CURRENT){ $$('#calGrid').innerHTML=''; return; }
+  const byDay=summarizeByDay(TRADES);
+  const year=CAL_CURRENT.getUTCFullYear(), month=CAL_CURRENT.getUTCMonth();
+  const first=new Date(Date.UTC(year,month,1));
+  const dow=first.getUTCDay();
+  const offset=(dow===0?-6:1-dow); // lunes
+  const start=new Date(Date.UTC(year,month,1+offset));
+
+  $$('#calTitle').textContent=new Intl.DateTimeFormat('es-MX',{month:'long',year:'numeric',timeZone:'UTC'}).format(first);
+  let monthUnits=0, monthTrades=0;
+
+  const grid=$$('#calGrid');
+  grid.innerHTML=`<div class="cal-dow">Lun</div><div class="cal-dow">Mar</div><div class="cal-dow">Mié</div><div class="cal-dow">Jue</div><div class="cal-dow">Vie</div><div class="cal-dow">Sáb</div><div class="cal-dow">Dom</div>`;
+
+  // Escala por intensidad
+  const daysInMonth=new Date(Date.UTC(year,month+1,0)).getUTCDate();
+  const vals=[]; for(let d=1; d<=daysInMonth; d++){ const key=new Date(Date.UTC(year,month,d)).toISOString().slice(0,10); vals.push(Math.abs(byDay.get(key)?.u||0)); }
+  const maxAbs=Math.max(0,...vals);
+
+  for(let i=0;i<42;i++){
+    const d=new Date(Date.UTC(start.getUTCFullYear(),start.getUTCMonth(),start.getUTCDate()+i));
+    const key=d.toISOString().slice(0,10);
+    const inMonth=d.getUTCMonth()===month;
+    const o=byDay.get(key)||{u:0,trades:0};
+    if(inMonth){ monthUnits+=o.u; monthTrades+=o.trades; }
+
+    const u=o.u;
+    const alpha=maxAbs>0? (0.18+0.72*Math.min(1,Math.abs(u)/maxAbs)) : 0; // 0.18..0.9
+    let bg, border;
+    if(u>0){ bg=`rgba(31,185,112,${alpha})`; border='rgba(31,185,112,.55)'; }
+    else if(u<0){ bg=`rgba(224,82,107,${alpha})`; border='rgba(224,82,107,.55)'; }
+    else { bg='#1a2234'; border='var(--border)'; }
+
+    const div=document.createElement('div');
+    div.className='day'+(inMonth?'':' other');
+    div.style.background = u===0 ? bg : `linear-gradient(180deg, ${bg}, rgba(0,0,0,.08))`;
+    div.style.borderColor = border;
+    div.innerHTML = `<div class="n">${d.getUTCDate()}</div><div class="u">${u>0? '+'+fmtNum(u): (u<0? fmtNum(u): '—')} u</div>`;
+    grid.appendChild(div);
+  }
+
+  const badge=$$('#monthUnits');
+  badge.textContent = `Mes: ${monthUnits>0? '+'+fmtNum(monthUnits): fmtNum(monthUnits)} u`;
+  badge.classList.toggle('positive', monthUnits>0);
+  badge.classList.toggle('negative', monthUnits<0);
+  $$('#monthTrades').textContent = `Trades: ${new Intl.NumberFormat('es-MX').format(monthTrades)}`;
+}
+
+async function loadCSV(){
+  return new Promise((res,rej)=>{ Papa.parse(CSV_PATH,{ header:true, dynamicTyping:true, download:true, skipEmptyLines:true, complete:(o)=>res(o.data), error:(e)=>rej(e) }); });
+}
+
+(async()=>{
+  try{
+    RAW = await loadCSV();
+    const headers=Object.keys(RAW[0]);
+    const dateCol=detectDateCols(headers)[0]||headers[0];
+    TRADES = buildTrades(RAW, dateCol);
+    const dates=TRADES.map(t=> new Date(t.timestamp));
+    CAL_CURRENT = dates.length? new Date(Date.UTC(dates[0].getUTCFullYear(), dates[0].getUTCMonth(), 1)) : new Date();
+    renderCalendar();
+  }catch(e){ console.error(e); }
+})();
+
+$$('#prevMonth').addEventListener('click', ()=>{ if(!CAL_CURRENT) return; CAL_CURRENT = new Date(Date.UTC(CAL_CURRENT.getUTCFullYear(), CAL_CURRENT.getUTCMonth()-1, 1)); renderCalendar(); });
+$$('#nextMonth').addEventListener('click', ()=>{ if(!CAL_CURRENT) return; CAL_CURRENT = new Date(Date.UTC(CAL_CURRENT.getUTCFullYear(), CAL_CURRENT.getUTCMonth()+1, 1)); renderCalendar(); });
+</script>
+</body>
+</html>

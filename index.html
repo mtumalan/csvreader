@@ -151,8 +151,10 @@ function unitsPerTrade_BT(tr){
   if (tr.signal === 0) return 0;
   const actualSigned = tr.actual01 === 1 ? +1 : -1;
   const hit = (tr.signal === actualSigned);
-  return hit ? +PAYOUT : -1;
+  // Usa el stake_mult de tu CSV; si es sábado vendrá 2.0
+  return tr.stake_mult * (hit ? +PAYOUT : -1);
 }
+
 function unitsPerTrade_Weighted(tr){
   if (tr.signal === 0) return 0;
   const actualSigned = tr.actual01 === 1 ? +1 : -1;

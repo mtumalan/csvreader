@@ -106,13 +106,20 @@ function detectDateCols(cols){ const guess=['timestamp','ts','date','datetime'];
 function parseCoins(headers){ const coins=new Set(); for(const h of headers){ if(h.startsWith('signal_')) coins.add(h.replace('signal_','')); } return Array.from(coins).sort(); }
 
 function buildTrades(rows, dateCol){
-  const coins=parseCoins(Object.keys(rows[0]));
-  const trades=[];
-  for(const r of rows){
-    const t=new Date(r[dateCol]); if(isNaN(t)) continue;
-    for(const c of coins){
-      const s=toNumber(r['signal_'+c]); if(s!==1) continue;   // sólo trades ejecutados
-      const a=toNumber(r['actual_'+c]); const win=(a===1);    // 1=up → win
+  const coins = parseCoins(Object.keys(rows[0]));
+  const trades = [];
+  for (const r of rows){
+    const t = new Date(r[dateCol]); if (isNaN(t)) continue;
+    for (const c of coins){
+      const s = toNumber(r['signal_'+c]);
+      if (s !== 1) continue; // solo trades ejecutados para esa moneda
+
+      const a   = toNumber(r['actual_'+c]); // 1=up, 0=down
+      const dir = toNumber(r['dir_'+c]);    // +1 largo, -1 corto, 0 no trade
+
+      // win: si largo, acierta cuando actual==1; si corto, acierta cuando actual==0
+      const win = dir === 1 ? (a === 1) : (dir === -1 ? (a === 0) : false);
+
       trades.push({ timestamp: t.toISOString(), win });
     }
   }

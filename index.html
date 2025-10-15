@@ -92,13 +92,13 @@
 <script>
 // Config mínima
 const CSV_PATH = 'data/results.csv';
-const PAYOUT = 0.885; // proporción fija
+const PAYOUT = 0.885; // +0.885 u por win, -1 u por lose
 
 const $$=(s,r=document)=>r.querySelector(s);
 const fmtNum=(n)=> new Intl.NumberFormat('es-MX',{maximumFractionDigits:2}).format(n);
 
 let RAW=[]; // CSV parseado
-let TRADES=[]; // {timestamp, unit_mult, win}
+let TRADES=[]; // {timestamp, win}
 let CAL_CURRENT=null; // Date UTC (primer día del mes visible)
 
 function toNumber(x){ if(x===null||x===undefined||x==='') return null; if(x==='-inf'||x==='Infinity'||x==='inf'||x==='-Infinity') return null; const n=Number(x); return Number.isFinite(n)? n : null; }
@@ -110,17 +110,18 @@ function buildTrades(rows, dateCol){
   const trades=[];
   for(const r of rows){
     const t=new Date(r[dateCol]); if(isNaN(t)) continue;
-    const sm = toNumber(r['stake_mult']) ?? 1;
     for(const c of coins){
-      const s=toNumber(r['signal_'+c]); if(s!==1) continue;
-      const a=toNumber(r['actual_'+c]); const win=(a===1);
-      trades.push({ timestamp: t.toISOString(), unit_mult: sm, win });
+      const s=toNumber(r['signal_'+c]); if(s!==1) continue;   // sólo trades ejecutados
+      const a=toNumber(r['actual_'+c]); const win=(a===1);    // 1=up → win
+      trades.push({ timestamp: t.toISOString(), win });
     }
   }
   return trades;
 }
 
-function unitsDelta(tr){ return tr.win ? tr.unit_mult * PAYOUT : -tr.unit_mult; }
+function unitsDelta(tr){
+  return tr.win ? +PAYOUT : -1; // +0.885 por win, -1 por lose
+}
 
 function summarizeByDay(trades){
   const map=new Map(); // YYYY-MM-DD -> {u, trades}
@@ -189,6 +190,7 @@ async function loadCSV(){
 (async()=>{
   try{
     RAW = await loadCSV();
+    if(!RAW || !RAW.length){ throw new Error('CSV vacío'); }
     const headers=Object.keys(RAW[0]);
     const dateCol=detectDateCols(headers)[0]||headers[0];
     TRADES = buildTrades(RAW, dateCol);

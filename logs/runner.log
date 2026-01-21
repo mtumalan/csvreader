@@ -1,0 +1,325 @@
+2025-10-14 23:19:40 | INFO | Iniciando runner…
+2025-10-14 23:19:56 | INFO | results.csv filas=217 | último=2025-10-15 02:00:00+00:00
+2025-10-14 23:19:57 | INFO | [BTCUSDT] nuevas=1  rango=2025-10-15 03:00:00+00:00→2025-10-15 03:00:00+00:00
+2025-10-14 23:19:58 | INFO | [ETHUSDT] nuevas=1  rango=2025-10-15 03:00:00+00:00→2025-10-15 03:00:00+00:00
+2025-10-14 23:19:58 | INFO | [XRPUSDT] nuevas=1  rango=2025-10-15 03:00:00+00:00→2025-10-15 03:00:00+00:00
+2025-10-14 23:19:58 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=218 | rango=2025-10-06 01:00:00+00:00→2025-10-15 03:00:00+00:00
+2025-10-14 23:20:00 | INFO | Push a origin/main completado.
+== Spot 1h fetch start @ 2025-10-15T05:19:40.599507+00:00 ==
+[BTCUSDT] SPOT 1h …
+[BTCUSDT] ✓ hasta 2025-10-15 04:00:00+00:00
+[ETHUSDT] SPOT 1h …
+[ETHUSDT] ✓ hasta 2025-10-15 04:00:00+00:00
+[XRPUSDT] SPOT 1h …
+[XRPUSDT] ✓ hasta 2025-10-15 04:00:00+00:00
+== Spot 1h fetch end   @ 2025-10-15T05:19:45.781506+00:00 ==
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   20478  ( 49.4 %)
+  verde ( 1):   20961  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19804  ( 49.3 %)
+  verde ( 1):   20366  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   16607  ( 48.3 %)
+  verde ( 1):   17810  ( 51.7 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 116026
+  roja  (-1):   56889  ( 49.0 %)
+  verde ( 1):   59137  ( 51.0 %)
+2025-10-15 00:05:01 | INFO | Iniciando runner…
+2025-10-15 00:05:13 | INFO | results.csv filas=218 | último=2025-10-15 03:00:00+00:00
+2025-10-15 00:05:14 | INFO | [BTCUSDT] nuevas=1  rango=2025-10-15 04:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:05:14 | INFO | [ETHUSDT] nuevas=1  rango=2025-10-15 04:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:05:14 | INFO | [XRPUSDT] nuevas=1  rango=2025-10-15 04:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:05:14 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=219 | rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:05:14 | ERROR | Fallo fatal: Command '['git', 'config', 'user.name', 'auto-bot']' returned non-zero exit status 128.
+Traceback (most recent call last):
+  File "/home/mtumalan/Desktop/Repos/csvreader/runner.py", line 281, in git_commit_push
+    git_run(["git","config","--get","user.name"], repo)
+  File "/home/mtumalan/Desktop/Repos/csvreader/runner.py", line 276, in git_run
+    return subprocess.run(args, cwd=str(cwd), text=True, capture_output=True, check=check)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'config', '--get', 'user.name']' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mtumalan/Desktop/Repos/csvreader/runner.py", line 345, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/mtumalan/Desktop/Repos/csvreader/runner.py", line 340, in main
+    git_commit_push(PAGES_REPO_DIR, DEST_CSV_PATH)
+  File "/home/mtumalan/Desktop/Repos/csvreader/runner.py", line 283, in git_commit_push
+    git_run(["git","config","user.name","auto-bot"], repo)
+  File "/home/mtumalan/Desktop/Repos/csvreader/runner.py", line 276, in git_run
+    return subprocess.run(args, cwd=str(cwd), text=True, capture_output=True, check=check)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'config', 'user.name', 'auto-bot']' returned non-zero exit status 128.
+== Spot 1h fetch start @ 2025-10-15T06:05:01.871377+00:00 ==
+[BTCUSDT] SPOT 1h …
+[BTCUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[ETHUSDT] SPOT 1h …
+[ETHUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[XRPUSDT] SPOT 1h …
+[XRPUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+== Spot 1h fetch end   @ 2025-10-15T06:05:05.735890+00:00 ==
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   20478  ( 49.4 %)
+  verde ( 1):   20962  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19805  ( 49.3 %)
+  verde ( 1):   20366  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   16607  ( 48.3 %)
+  verde ( 1):   17811  ( 51.7 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 116029
+  roja  (-1):   56890  ( 49.0 %)
+  verde ( 1):   59139  ( 51.0 %)
+2025-10-15 00:12:01 | INFO | Iniciando runner…
+2025-10-15 00:12:13 | INFO | results.csv filas=219 | último=2025-10-15 04:00:00+00:00
+2025-10-15 00:12:14 | INFO | [BTCUSDT] 0 filas nuevas tras filtros.
+2025-10-15 00:12:14 | INFO | [ETHUSDT] 0 filas nuevas tras filtros.
+2025-10-15 00:12:14 | INFO | [XRPUSDT] 0 filas nuevas tras filtros.
+2025-10-15 00:12:14 | INFO | No hay filas nuevas en ninguna moneda.
+== Spot 1h fetch start @ 2025-10-15T06:12:01.383550+00:00 ==
+[BTCUSDT] SPOT 1h …
+[BTCUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[ETHUSDT] SPOT 1h …
+[ETHUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[XRPUSDT] SPOT 1h …
+[XRPUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+== Spot 1h fetch end   @ 2025-10-15T06:12:05.418181+00:00 ==
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   20478  ( 49.4 %)
+  verde ( 1):   20962  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19805  ( 49.3 %)
+  verde ( 1):   20366  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   16607  ( 48.3 %)
+  verde ( 1):   17811  ( 51.7 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 116029
+  roja  (-1):   56890  ( 49.0 %)
+  verde ( 1):   59139  ( 51.0 %)
+2025-10-15 00:15:02 | INFO | Iniciando runner…
+2025-10-15 00:15:13 | INFO | results.csv filas=0 | último=—
+2025-10-15 00:15:14 | INFO | [BTCUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:15:14 | INFO | [ETHUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:15:14 | INFO | [XRPUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:15:14 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=219 | rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:15:15 | INFO | Sin cambios para commit/push.
+== Spot 1h fetch start @ 2025-10-15T06:15:02.218077+00:00 ==
+[BTCUSDT] SPOT 1h …
+[BTCUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[ETHUSDT] SPOT 1h …
+[ETHUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[XRPUSDT] SPOT 1h …
+[XRPUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+== Spot 1h fetch end   @ 2025-10-15T06:15:06.075082+00:00 ==
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   20478  ( 49.4 %)
+  verde ( 1):   20962  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19805  ( 49.3 %)
+  verde ( 1):   20366  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   16607  ( 48.3 %)
+  verde ( 1):   17811  ( 51.7 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 116029
+  roja  (-1):   56890  ( 49.0 %)
+  verde ( 1):   59139  ( 51.0 %)
+2025-10-15 00:17:01 | INFO | Iniciando runner…
+2025-10-15 00:17:13 | INFO | results.csv filas=219 | último=2025-10-15 04:00:00+00:00
+2025-10-15 00:17:13 | INFO | [BTCUSDT] 0 filas nuevas tras filtros.
+2025-10-15 00:17:14 | INFO | [ETHUSDT] 0 filas nuevas tras filtros.
+2025-10-15 00:17:14 | INFO | [XRPUSDT] 0 filas nuevas tras filtros.
+2025-10-15 00:17:14 | INFO | No hay filas nuevas en ninguna moneda.
+== Spot 1h fetch start @ 2025-10-15T06:17:01.437987+00:00 ==
+[BTCUSDT] SPOT 1h …
+[BTCUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[ETHUSDT] SPOT 1h …
+[ETHUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[XRPUSDT] SPOT 1h …
+[XRPUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+== Spot 1h fetch end   @ 2025-10-15T06:17:05.555562+00:00 ==
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   20478  ( 49.4 %)
+  verde ( 1):   20962  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19805  ( 49.3 %)
+  verde ( 1):   20366  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   16607  ( 48.3 %)
+  verde ( 1):   17811  ( 51.7 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 116029
+  roja  (-1):   56890  ( 49.0 %)
+  verde ( 1):   59139  ( 51.0 %)
+2025-10-15 00:19:02 | INFO | Iniciando runner…
+2025-10-15 00:19:13 | INFO | results.csv filas=0 | último=—
+2025-10-15 00:19:14 | INFO | [BTCUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:19:14 | INFO | [ETHUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:19:15 | INFO | [XRPUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:19:15 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=219 | rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:19:15 | ERROR | No hay remoto 'origin' configurado en /home/mtumalan/Desktop/Repos/csvreader. Configúralo y reintenta.
+== Spot 1h fetch start @ 2025-10-15T06:19:02.015188+00:00 ==
+[BTCUSDT] SPOT 1h …
+[BTCUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[ETHUSDT] SPOT 1h …
+[ETHUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[XRPUSDT] SPOT 1h …
+[XRPUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+== Spot 1h fetch end   @ 2025-10-15T06:19:05.937883+00:00 ==
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   20478  ( 49.4 %)
+  verde ( 1):   20962  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19805  ( 49.3 %)
+  verde ( 1):   20366  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   16607  ( 48.3 %)
+  verde ( 1):   17811  ( 51.7 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 116029
+  roja  (-1):   56890  ( 49.0 %)
+  verde ( 1):   59139  ( 51.0 %)
+2025-10-15 00:28:01 | INFO | Iniciando runner…
+2025-10-15 00:28:13 | INFO | results.csv filas=0 | último=—
+2025-10-15 00:28:14 | INFO | [BTCUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:28:14 | INFO | [ETHUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:28:14 | INFO | [XRPUSDT] nuevas=219  rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:28:14 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=219 | rango=2025-10-06 01:00:00+00:00→2025-10-15 04:00:00+00:00
+2025-10-15 00:28:14 | ERROR | No hay remoto 'origin' configurado en /home/mtumalan/Desktop/Repos/csvreader. Configúralo y reintenta.
+== Spot 1h fetch start @ 2025-10-15T06:28:01.574377+00:00 ==
+[BTCUSDT] SPOT 1h …
+[BTCUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[ETHUSDT] SPOT 1h …
+[ETHUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+[XRPUSDT] SPOT 1h …
+[XRPUSDT] ✓ hasta 2025-10-15 05:00:00+00:00
+== Spot 1h fetch end   @ 2025-10-15T06:28:05.625092+00:00 ==
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   20478  ( 49.4 %)
+  verde ( 1):   20962  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19805  ( 49.3 %)
+  verde ( 1):   20366  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   16607  ( 48.3 %)
+  verde ( 1):   17811  ( 51.7 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 116029
+  roja  (-1):   56890  ( 49.0 %)
+  verde ( 1):   59139  ( 51.0 %)

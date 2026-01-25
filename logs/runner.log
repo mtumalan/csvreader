@@ -323,3 +323,286 @@ subprocess.CalledProcessError: Command '['git', 'config', 'user.name', 'auto-bot
   Total filas: 116029
   roja  (-1):   56890  ( 49.0 %)
   verde ( 1):   59139  ( 51.0 %)
+2026-01-25 12:20:01 | INFO | Iniciando runner…
+/home/mtumalan/Desktop/Repos/csvreader/runner.py:104: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df[c] = pd.to_numeric(df[c], errors="ignore")
+2026-01-25 12:20:10 | INFO | results.csv filas=3496 | último=2026-01-25 12:00:00+00:00
+2026-01-25 12:20:11 | INFO | [BTCUSDT] 0 filas nuevas tras filtros.
+2026-01-25 12:20:11 | INFO | [XRPUSDT] 0 filas nuevas tras filtros.
+2026-01-25 12:20:12 | INFO | [ETHUSDT] 0 filas nuevas tras filtros.
+2026-01-25 12:20:12 | INFO | No hay filas nuevas en ninguna moneda.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21479  ( 49.4 %)
+  verde ( 1):   21957  ( 50.6 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21429  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19768  ( 48.4 %)
+  verde ( 1):   21039  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127679
+  roja  (-1):   62676  ( 49.1 %)
+  verde ( 1):   65003  ( 50.9 %)
+2026-01-25 13:20:02 | INFO | Iniciando runner…
+/home/mtumalan/Desktop/Repos/csvreader/runner.py:105: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df[c] = pd.to_numeric(df[c], errors="ignore")
+2026-01-25 13:20:10 | INFO | results.csv filas=3496 | último=2026-01-25 12:00:00+00:00
+2026-01-25 13:20:10 | INFO | [BTCUSDT] nuevas=3  rango=2026-01-25 13:00:00+00:00→2026-01-25 15:00:00+00:00
+2026-01-25 13:20:11 | INFO | [XRPUSDT] nuevas=3  rango=2026-01-25 13:00:00+00:00→2026-01-25 15:00:00+00:00
+2026-01-25 13:20:11 | INFO | [ETHUSDT] nuevas=3  rango=2026-01-25 13:00:00+00:00→2026-01-25 15:00:00+00:00
+2026-01-25 13:20:11 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=3499 | rango=2025-09-01 01:00:00+00:00→2026-01-25 15:00:00+00:00
+2026-01-25 13:20:11 | ERROR | No hay remoto 'origin' configurado en /home/mtumalan/Desktop/Repos/csvreader. Configúralo y reintenta.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21482  ( 49.5 %)
+  verde ( 1):   21957  ( 50.5 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21432  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19770  ( 48.4 %)
+  verde ( 1):   21040  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127688
+  roja  (-1):   62684  ( 49.1 %)
+  verde ( 1):   65004  ( 50.9 %)
+2026-01-25 14:20:02 | INFO | Iniciando runner…
+/home/mtumalan/Desktop/Repos/csvreader/runner.py:105: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df[c] = pd.to_numeric(df[c], errors="ignore")
+2026-01-25 14:20:10 | INFO | results.csv filas=3499 | último=2026-01-25 15:00:00+00:00
+2026-01-25 14:20:11 | INFO | [BTCUSDT] nuevas=1  rango=2026-01-25 16:00:00+00:00→2026-01-25 16:00:00+00:00
+2026-01-25 14:20:11 | INFO | [XRPUSDT] nuevas=1  rango=2026-01-25 16:00:00+00:00→2026-01-25 16:00:00+00:00
+2026-01-25 14:20:12 | INFO | [ETHUSDT] nuevas=1  rango=2026-01-25 16:00:00+00:00→2026-01-25 16:00:00+00:00
+2026-01-25 14:20:12 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=3500 | rango=2025-09-01 01:00:00+00:00→2026-01-25 16:00:00+00:00
+2026-01-25 14:20:12 | ERROR | No es un repo Git: /home/mtumalan/Desktop/Repos/csvreader (no .git y rev-parse falló). Omito push.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21483  ( 49.5 %)
+  verde ( 1):   21957  ( 50.5 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21433  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19771  ( 48.4 %)
+  verde ( 1):   21040  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127691
+  roja  (-1):   62687  ( 49.1 %)
+  verde ( 1):   65004  ( 50.9 %)
+2026-01-25 15:20:02 | INFO | Iniciando runner…
+2026-01-25 15:20:10 | INFO | results.csv filas=3502 | último=2026-01-25 18:00:00+00:00
+2026-01-25 15:20:11 | INFO | [BTCUSDT] 0 filas nuevas tras filtros.
+2026-01-25 15:20:11 | INFO | [XRPUSDT] 0 filas nuevas tras filtros.
+2026-01-25 15:20:11 | INFO | [ETHUSDT] 0 filas nuevas tras filtros.
+2026-01-25 15:20:11 | INFO | No hay filas nuevas en ninguna moneda.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21484  ( 49.5 %)
+  verde ( 1):   21957  ( 50.5 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21434  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19772  ( 48.4 %)
+  verde ( 1):   21040  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127694
+  roja  (-1):   62690  ( 49.1 %)
+  verde ( 1):   65004  ( 50.9 %)
+2026-01-25 16:03:01 | INFO | Iniciando runner…
+2026-01-25 16:03:09 | INFO | results.csv filas=3502 | último=2026-01-25 18:00:00+00:00
+2026-01-25 16:03:10 | INFO | [BTCUSDT] 0 filas nuevas tras filtros.
+2026-01-25 16:03:10 | INFO | [XRPUSDT] 0 filas nuevas tras filtros.
+2026-01-25 16:03:11 | INFO | [ETHUSDT] 0 filas nuevas tras filtros.
+2026-01-25 16:03:11 | INFO | No hay filas nuevas en ninguna moneda.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21485  ( 49.5 %)
+  verde ( 1):   21957  ( 50.5 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21435  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19773  ( 48.4 %)
+  verde ( 1):   21040  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127697
+  roja  (-1):   62693  ( 49.1 %)
+  verde ( 1):   65004  ( 50.9 %)
+2026-01-25 16:12:01 | INFO | Iniciando runner…
+2026-01-25 16:12:10 | INFO | results.csv filas=3501 | último=2026-01-25 17:00:00+00:00
+2026-01-25 16:12:10 | INFO | [BTCUSDT] nuevas=1  rango=2026-01-25 18:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:12:11 | INFO | [XRPUSDT] nuevas=1  rango=2026-01-25 18:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:12:11 | INFO | [ETHUSDT] nuevas=1  rango=2026-01-25 18:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:12:11 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=3502 | rango=2025-09-01 01:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:12:11 | ERROR | No hay remoto 'origin' configurado en /home/mtumalan/Desktop/Repos/csvreader. Configúralo y reintenta.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21485  ( 49.5 %)
+  verde ( 1):   21957  ( 50.5 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21435  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19773  ( 48.4 %)
+  verde ( 1):   21040  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127697
+  roja  (-1):   62693  ( 49.1 %)
+  verde ( 1):   65004  ( 50.9 %)
+2026-01-25 16:16:02 | INFO | Iniciando runner…
+2026-01-25 16:16:10 | INFO | results.csv filas=3501 | último=2026-01-25 17:00:00+00:00
+2026-01-25 16:16:11 | INFO | [BTCUSDT] nuevas=1  rango=2026-01-25 18:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:16:11 | INFO | [XRPUSDT] nuevas=1  rango=2026-01-25 18:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:16:12 | INFO | [ETHUSDT] nuevas=1  rango=2026-01-25 18:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:16:12 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=3502 | rango=2025-09-01 01:00:00+00:00→2026-01-25 18:00:00+00:00
+2026-01-25 16:16:13 | INFO | Push a origin/main completado.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21485  ( 49.5 %)
+  verde ( 1):   21957  ( 50.5 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21435  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19773  ( 48.4 %)
+  verde ( 1):   21040  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127697
+  roja  (-1):   62693  ( 49.1 %)
+  verde ( 1):   65004  ( 50.9 %)
+2026-01-25 17:03:01 | INFO | Iniciando runner…
+2026-01-25 17:03:10 | INFO | results.csv filas=3502 | último=2026-01-25 18:00:00+00:00
+2026-01-25 17:03:11 | INFO | [BTCUSDT] nuevas=1  rango=2026-01-25 19:00:00+00:00→2026-01-25 19:00:00+00:00
+2026-01-25 17:03:11 | INFO | [XRPUSDT] nuevas=1  rango=2026-01-25 19:00:00+00:00→2026-01-25 19:00:00+00:00
+2026-01-25 17:03:11 | INFO | [ETHUSDT] nuevas=1  rango=2026-01-25 19:00:00+00:00→2026-01-25 19:00:00+00:00
+2026-01-25 17:03:11 | INFO | CSV actualizado: /home/mtumalan/Desktop/Repos/csvreader/data/results.csv | filas=3503 | rango=2025-09-01 01:00:00+00:00→2026-01-25 19:00:00+00:00
+2026-01-25 17:03:13 | INFO | Push a origin/main completado.
+
+=== RESULTADOS POR SÍMBOLO ===
+
+[BTCUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/BTCUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21485  ( 49.5 %)
+  verde ( 1):   21958  ( 50.5 %)
+
+[ETHUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/ETHUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   21436  ( 49.3 %)
+  verde ( 1):   22007  ( 50.7 %)
+
+[XRPUSDT]
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/X_1h.csv
+  • /home/mtumalan/Desktop/Repos/MT/alquimiaBTC/third/data/preprocessed/XRPUSDT/y_color_1h.csv
+  ── Distribución ──
+  roja  (-1):   19773  ( 48.4 %)
+  verde ( 1):   21041  ( 51.6 %)
+
+=== RESUMEN GLOBAL ===
+  Total filas: 127700
+  roja  (-1):   62694  ( 49.1 %)
+  verde ( 1):   65006  ( 50.9 %)

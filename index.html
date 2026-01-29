@@ -120,9 +120,13 @@ const PROFIT_F = 0.885;  // payout
 const STAKE_MULT_BY_WEEKDAY = {
   "Wednesday": 1.5,
   "Saturday":  2.25,
+  // "Thursday": 0.0,  // <-- YA NO: el apagado ahora depende de fecha
 };
 const STAKE_MULT_BY_DATE = {};
 const DEFAULT_STAKE_MULT = 1.0;
+
+// Thursday OFF a partir de esta fecha (UTC)
+const THU_OFF_START_UTC = "2026-02-01"; // YYYY-MM-DD
 
 // UI helpers
 const $$=(s,r=document)=>r.querySelector(s);
@@ -218,10 +222,20 @@ function weekdayNameUTC(d){
 
 function stakeMultiplierForTsUTC(d){
   const dstr = ymdUTC(d);
+
+  // prioridad: fecha exacta
   if(Object.prototype.hasOwnProperty.call(STAKE_MULT_BY_DATE, dstr)){
     return Number(STAKE_MULT_BY_DATE[dstr]);
   }
+
   const wd = weekdayNameUTC(d);
+
+  // Thursday OFF solo desde 2026-02-01 (UTC) en adelante
+  // (comparación lexicográfica segura para YYYY-MM-DD)
+  if(wd === "Thursday" && dstr >= THU_OFF_START_UTC){
+    return 0.0;
+  }
+
   return Number(STAKE_MULT_BY_WEEKDAY[wd] ?? DEFAULT_STAKE_MULT);
 }
 

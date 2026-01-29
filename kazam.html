@@ -64,6 +64,10 @@
     <header>
       <h1>KAZAM</h1>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <label class="badge" style="cursor:pointer; user-select:none;">
+          <input id="thuOffToggle" type="checkbox" style="margin:0 8px 0 0; transform: translateY(1px);" />
+          Jueves OFF (desde Febrero 2026)
+        </label>
         <span id="monthUnits" class="badge">Mes: — u</span>
         <span id="monthTrades" class="badge">—</span>
         <div class="seg" id="modeSeg">
@@ -124,6 +128,9 @@ const STAKE_MULT_BY_WEEKDAY = {
 const STAKE_MULT_BY_DATE = {};
 const DEFAULT_STAKE_MULT = 1.0;
 
+const THU_OFF_START_UTC = "2026-02-01";  // YYYY-MM-DD
+let THU_OFF_ENABLED = true;             // lo controla el toggle
+
 // UI helpers
 const $$=(s,r=document)=>r.querySelector(s);
 const fmtNum=(n)=> new Intl.NumberFormat('es-MX',{maximumFractionDigits:2}).format(n);
@@ -164,6 +171,7 @@ let RAW=[];
 let ROWS=[];
 let CAL_CURRENT=null;
 let MODE='trade';
+let DATE_COL = null;
 
 // ---------- Parsing / utils ----------
 function toNumber(x){
@@ -218,10 +226,21 @@ function weekdayNameUTC(d){
 
 function stakeMultiplierForTsUTC(d){
   const dstr = ymdUTC(d);
+
+  // prioridad: fecha exacta
   if(Object.prototype.hasOwnProperty.call(STAKE_MULT_BY_DATE, dstr)){
     return Number(STAKE_MULT_BY_DATE[dstr]);
   }
+
   const wd = weekdayNameUTC(d);
+
+  // Thursday OFF solo si:
+  // - toggle encendido
+  // - fecha >= THU_OFF_START_UTC (comparación lexicográfica YYYY-MM-DD)
+  if(wd === "Thursday" && THU_OFF_ENABLED && dstr >= THU_OFF_START_UTC){
+    return 0.0;
+  }
+
   return Number(STAKE_MULT_BY_WEEKDAY[wd] ?? DEFAULT_STAKE_MULT);
 }
 
@@ -446,9 +465,10 @@ async function loadCSV(){
     if(!RAW || !RAW.length) throw new Error('CSV vacío');
 
     const headers=Object.keys(RAW[0]);
-    const dateCol = detectDateCol(headers);
+    DATE_COL = detectDateCol(headers);
 
-    ROWS = buildRowsLikePython(RAW, dateCol);
+    ROWS = buildRowsLikePython(RAW, DATE_COL);
+
     if(!ROWS.length) throw new Error('Sin filas útiles tras drop/cutoff');
 
     const dLast = new Date(ROWS[ROWS.length - 1].tsISO);
@@ -481,6 +501,27 @@ document.querySelectorAll('#modeSeg button').forEach(btn=>{
     renderCalendar();
   });
 });
+
+// --- Toggle Thursday OFF ---
+(function initThuToggle(){
+  const el = $$('#thuOffToggle');
+  if(!el) return;
+
+  const saved = localStorage.getItem('thu_off_enabled');
+  THU_OFF_ENABLED = (saved === null) ? true : (saved === '1');
+
+  el.checked = THU_OFF_ENABLED;
+
+  el.addEventListener('change', ()=>{
+    THU_OFF_ENABLED = !!el.checked;
+    localStorage.setItem('thu_off_enabled', THU_OFF_ENABLED ? '1' : '0');
+
+    if(RAW?.length && DATE_COL){
+      ROWS = buildRowsLikePython(RAW, DATE_COL);
+      renderCalendar();
+    }
+  });
+})();
 </script>
 
 </body>
